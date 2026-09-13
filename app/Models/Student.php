@@ -48,13 +48,23 @@ class Student extends Model
         return $this->belongsTo(AcademicYear::class);
     }
 
-    public function parents()
+        public function parents()
     {
-        return $this->belongsToMany(ParentProfile::class, 'parent_student');
+        return $this->belongsToMany(ParentProfile::class, 'parent_student', 'student_id', 'parent_id');
     }
 
     public function scopeActive($query)
     {
         return $query->where('status', 'active');
+    }
+
+    public function faceProfile()
+    {
+        return $this->hasOne(FaceProfile::class);
+    }
+
+    public function faceEnrollmentLogs()
+    {
+        return $this->hasMany(FaceEnrollmentLog::class);
     }
 }

@@ -28,7 +28,10 @@ class MajorSeeder extends Seeder
         ];
 
         foreach ($majors as $major) {
-            Major::create($major);
+            Major::firstOrCreate(
+                ['code' => $major['code']],
+                $major
+            );
         }
     }
 }

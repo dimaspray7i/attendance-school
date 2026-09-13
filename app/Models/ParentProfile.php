@@ -9,6 +9,7 @@ class ParentProfile extends Model
 {
     use HasFactory;
 
+    // Tentukan nama tabel secara eksplisit
     protected $table = 'parents';
 
     protected $fillable = [
@@ -28,6 +29,6 @@ class ParentProfile extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'parent_student');
+        return $this->belongsToMany(Student::class, 'parent_student', 'parent_id', 'student_id');
     }
 }
